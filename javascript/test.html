@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function test() {
+            if(true) {
+                var x = 10;  // var는 함수 스코프를 가집니다.
+                let y = 20;
+                const z = 30;
+            }
+            console.log(x);  // 10, var는 함수 스코프이므로 함수 내에서 접근 가능
+            console.log(y);  // ReferenceError: y is not defined
+            console.log(z);  // ReferenceError: z is not defined 
+            document.write("<h1>{" + x + "}</h1>");
+        }
+        test();
+       
+    </script>
+</body>
+</html>

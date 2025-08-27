@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 객체 예제
+
+        function Person(name, age, skills) {
+            this.name = name;
+            this.age = age;
+            this.skills = skills;
+            
+        }
+        const person1 = new Person("홍길동", 30, ["검술", "활쏘기"]);
+        console.log(person1.name, person1.age, person1.skills); // 홍길동 30 ["검술", "활쏘기"]
+
+        person = {
+            name: "홍길동",
+            age: 30,
+            skills: ["JavaScript", "HTML", "CSS"],
+            greet: function(time) {
+                console.log("안녕하세요, " + this.name + "님!");
+                return `${time} 안녕하세요? 제 이름은 ${this.name}입니다.`;
+            }
+        };
+
+        console.log(person.greet("오전 10시")); // 오전 10시 안녕하세요? 제 이름은 홍길동입니다.
+
+       // person2 = new Object();
+        person2 = {}; // 빈 객체 생성
+        person2.name = "이순신";
+        person2.age = 25;
+        person2.skills = ["JavaScript", "HTML", "CSS"];
+        person2.greet = function(time) {
+            console.log("안녕하세요, " + this.name + "님!");
+            return `${time} 안녕하세요? 제 이름은 ${this.name}입니다.`;
+        };
+        console.log(person2.greet("오후 3시")); // 오후 3시 안녕하세요? 제 이름은 이순신입니다.
+
+
+        // 객체의 속성 접근
+        console.log(person.name); // 홍길동
+        console.log(person.age); // 30
+    </script>
+</body>
+</html>

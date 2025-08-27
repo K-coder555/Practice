@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>화면 테마 전환 (Light/Dark Mode)</title>
+    <style>
+        /* 
+         * 1. CSS 변수를 사용하여 테마별 색상 팔레트를 정의합니다.
+         * :root는 기본값인 라이트 모드입니다.
+         */
+        :root {
+            --bg-color: #f4f6f8;
+            --text-color: #212529;
+            --heading-color: #000000;
+            --card-bg-color: #ffffff;
+            --border-color: #dee2e6;
+            --link-color: #007bff;
+            --button-bg-color: #007bff;
+            --button-text-color: #ffffff;
+            --shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        /* 
+         * 2. html 요소에 .dark-mode 클래스가 추가될 경우 적용될 다크 모드 색상 팔레트입니다.
+         * CSS 변수의 값을 덮어쓰기만 하면 됩니다.
+         */
+        html.dark-mode {
+            --bg-color: #1a1a2e;
+            --text-color: #e0e0e0;
+            --heading-color: #ffffff;
+            --card-bg-color: #16213e;
+            --border-color: #4a4a6a;
+            --link-color: #3498db;
+            --button-bg-color: #3498db;
+            --button-text-color: #ffffff;
+            --shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        /* 3. 실제 스타일은 변수를 사용하여 적용합니다. */
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 20px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: var(--card-bg-color);
+            padding: 30px 40px;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border-color);
+            transition: background-color 0.3s, border-color 0.3s;
+        }
+
+        h1 {
+            color: var(--heading-color);
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        p {
+            line-height: 1.7;
+            margin-bottom: 15px;
+        }
+
+        a {
+            color: var(--link-color);
+            font-weight: 600;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        a:hover { text-decoration: underline; }
+
+        .theme-toggle-button {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 10px 20px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 50px;
+            border: 2px solid var(--border-color);
+            background-color: var(--card-bg-color);
+            color: var(--text-color);
+            box-shadow: var(--shadow);
+            transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+        }
+        .theme-toggle-button:hover {
+            opacity: 0.9;
+        }
+
+        .sample-button {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 12px 25px;
+            background-color: var(--button-bg-color);
+            color: var(--button-text-color);
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .sample-button:hover { opacity: 0.85; }
+
+    </style>
+</head>
+<body>
+
+    <button id="theme-toggle" class="theme-toggle-button">테마 전환</button>
+
+    <div class="container">
+        <h1>테마 전환 예제</h1>
+        <p>
+            이 페이지는 CSS 변수와 JavaScript를 사용하여 라이트 모드와 다크 모드를 전환하는 예제입니다.
+            우측 상단의 '테마 전환' 버튼을 클릭하여 두 가지 모드를 경험해보세요.
+        </p>
+        <p>
+            사용자의 선택은 브라우저의 <code>localStorage</code>에 저장되어, 페이지를 새로고침해도 마지막 테마 설정이 유지됩니다.
+            <a href="#">이 링크</a>와 아래 버튼의 색상 변화도 확인해보세요.
+        </p>
+        <button class="sample-button">샘플 버튼</button>
+    </div>
+
+    <script>
+        // 4. JavaScript 로직 구현
+        const themeToggleButton = document.getElementById('theme-toggle');
+        const htmlElement = document.documentElement; // <html> 요소를 선택
+
+        // 페이지 로드 시 localStorage에 저장된 테마가 있는지 확인하고 적용
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark') {
+                htmlElement.classList.add('dark-mode');
+                themeToggleButton.innerText = '라이트 모드';
+            } else {
+                themeToggleButton.innerText = '다크 모드';
+            }
+        });
+
+        // 테마 전환 버튼 클릭 이벤트 리스너
+        themeToggleButton.addEventListener('click', () => {
+            // html 요소에 .dark-mode 클래스를 토글(추가/제거)
+            htmlElement.classList.toggle('dark-mode');
+
+            // 현재 테마 상태를 확인하고 localStorage에 저장
+            if (htmlElement.classList.contains('dark-mode')) {
+                localStorage.setItem('theme', 'dark');
+                themeToggleButton.innerText = '라이트 모드';
+            } else {
+                localStorage.setItem('theme', 'light');
+                themeToggleButton.innerText = '다크 모드';
+            }
+        });
+    </script>
+
+</body>
+</html>

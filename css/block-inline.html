@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Display: block, inline, inline-block 예제</title>
+    <style>
+        :root {
+            --bg-color: #f8f9fa;
+            --container-bg: #ffffff;
+            --border-color: #dee2e6;
+            --shadow: 0 2px 5px rgba(0,0,0,0.05);
+            --info-bg: #e9ecef;
+        }
+
+        body {
+            font-family: 'Malgun Gothic', sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            background-color: var(--bg-color);
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: var(--container-bg);
+            padding: 20px 30px;
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+        }
+
+        h1, h2 {
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 10px;
+        }
+        h1 { text-align: center; }
+
+        .info {
+            background-color: var(--info-bg);
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+            border-left: 4px solid #6c757d;
+        }
+        .info code {
+            background-color: #ced4da;
+            padding: 2px 5px;
+            border-radius: 3px;
+            font-weight: bold;
+        }
+
+        .example-box {
+            border: #6c757d 1px solid;
+            padding: 20px;
+            margin-top: 10px;
+            border-radius: 5px;
+            
+        }
+
+        /* 공통 스타일 */
+        .item {
+            padding: 20px;
+            color: white;
+            font-weight: bold;
+            text-align: center;
+            border-radius: 4px;
+            margin: 5px;
+        }
+
+        /* 1. Block 요소 예제 */
+        .block-item {
+            background-color: blue; /* 핑크 */
+            display: block;
+            width: 300px; /* 너비 지정 가능 */
+            height: 60px; /* 높이 지정 가능 */
+        }
+
+        /* 2. Inline 요소 예제 */
+        .inline-item {
+            background-color: green; /* 파랑 */
+            display: flex;
+            width: 300px; /* 너비 속성 적용 안됨 */
+            height: 100px; /* 높이 속성 적용 안됨 */
+            margin-top: 20px; /* 상하 마진 적용 안됨 */
+            padding: 20px; /* 패딩은 적용되지만, 주변 레이아웃에 영향을 줌 */
+        }
+
+        /* 3. Inline-Block 요소 예제 (핵심) */
+        .inline-block-item {
+            background-color: #51cf66; /* 초록 */
+            display: flex;
+            width: 200px; /* 너비 지정 가능 */
+            height: 80px; /* 높이 지정 가능 */
+            margin-top: 20px; /* 상하 마진 적용 가능 */
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="container">
+
+        <!-- 1. Block 레벨 요소 -->
+        <section>
+            <h2><code>블록 요소 기본 스타일</code></h2>
+           
+            <div class="example-box">
+                <div class="item block-item">Block 1</div>
+                <div class="item block-item">Block 2</div>
+   
+            </div>
+        </section>
+
+        <!-- 2. Inline 레벨 요소 -->
+        <section>
+            <h2><code>인라인 요소 기본 스타일</code></h2>
+
+            <div class="example-box">
+                <span class="item inline-item">Inline 1</span>
+                <span class="item inline-item">Inline 2 (너비/높이 무시됨)</span>
+                <span class="item inline-item">Inline 3</span>
+             
+            </div>
+        </section>
+
+
+    </div>
+
+</body>
+</html>

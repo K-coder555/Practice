@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const now = new Date();
+        document.write(now.toISOString());
+        document.write("<hr>");
+        document.write(now.toLocaleTimeString());
+        document.write("<hr>");
+        document.write(now.getFullYear(), now.getMonth() + 1, now.getDate());
+        //document.write(`<p>${now.toLocaleString()}</p>`);
+
+        const uuid = crypto.randomUUID();
+        document.write(`<p>UUID: ${uuid}</p>`); //UUID를 사용하여 태그별로 고유한 ID 생성
+        
+    </script>
+</body>
+</html>
