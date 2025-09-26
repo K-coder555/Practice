@@ -1,0 +1,90 @@
+# OS & Editor
+.DS_Store
+Thumbs.db
+Icon?
+ehthumbs.db
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Logs
+logs/
+log/
+*.log
+
+# Node / JS / Vue
+node_modules/
+dist/
+build/
+.cache/
+.vite/
+vite*.cache/
+.npm/
+.yarn/
+.pnp.*
+coverage/
+.nyc_output/
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyc
+*.pyd
+.env
+.env.*
+.venv/
+venv/
+ENV/
+env/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.pyre/
+.ipynb_checkpoints/
+htmlcov/
+.coverage
+.coverage.*
+.eggs/
+*.egg-info/
+
+# Java / JVM
+*.class
+target/
+bin/
+out/
+.gradle/
+.settings/
+.project
+.classpath
+
+# Databases & Containers
+*.db
+*.sqlite
+*.sqlite3
+*.ibd
+*.frm
+*.mad
+*.mai
+*.opt
+*.cnf
+docker-data/
+.docker/
+compose-data/
+volumes/
+Container/**/data/
+Container/**/mydata/
+Container/**/was/
+FastAPI/**/mariadb_tmplt/data/
+
+# Media & large artifacts
+media/
+uploads/
+*.mp3
+*.mp4
+*.webm
+
+# Misc temp
+.tmp/
+tmp/

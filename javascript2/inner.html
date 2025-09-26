@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>innerHTML vs textContent</title>
+</head>
+<body>
+
+    <div id="example1">
+        <h1>HTML div</h1>
+    </div>
+    <div id="example2">
+        <h1>TEXT div</h1>
+    </div>
+
+    <input type="text" id="input" value="안녕하세요">
+
+    <script>
+        // innerHTML 예제
+        const hDiv = document.getElementById('example1');
+        console.log(hDiv);
+        hDiv.innerHTML = '<strong>안녕하세요</strong>, <em>홍길동</em>입니다.';
+
+        // textContent 예제
+        const tDiv = document.getElementById('example2');
+        console.log(tDiv);
+        // HTML 태그가 일반 텍스트로 처리됨
+        tDiv.innerHTML = '<strong>안녕하세요</strong>, <em>홍길동</em>입니다.';
+        const inputMessage = document.getElementById('input');
+        console.log(inputMessage.value);
+        inputMessage.value = 'Hi, this is a text message.';
+</script>
+
+</body>
+</html>

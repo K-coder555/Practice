@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>음식 분배 프로그램</title>
+</head>
+<body>
+    <h1>음식 분배 결과</h1>
+    <p>브라우저의 개발자 도구(F12) 콘솔에서 결과를 확인하세요.</p>
+    <div id="result-display"></div>
+
+    <script>
+        // 1. 초기 데이터 정의
+        const foods = ["쌀", "보리", "콩", "감자", "양파", "마늘", "배추", "무", "고구마", "호박"];
+        const poor = ["철수", "영희", "민수"];
+
+        // 2. 결과를 저장할 배열 초기화
+        // 각 사람에 대한 객체를 미리 생성합니다.
+        const result = poor.map(name => ({
+            name,
+            items: []
+        }));
+
+        // 3. 음식을 순서대로 분배
+        // forEach 루프와 인덱스를 사용하여 각 음식을 누구에게 줄지 결정합니다.
+        foods.forEach((food, index) => {
+            // 나머지 연산자(%)를 사용하여 순환 분배
+            // index: 0, 1, 2, 3, 4, ...
+            // poor.length: 3
+            // index % poor.length: 0, 1, 2, 0, 1, ...
+            const poorIndex = index % poor.length;
+            result[poorIndex].items.push(food);
+        });
+
+        // 4. 최종 결과 출력
+        console.log("--- 최종 분배 결과 ---");
+        console.log(result);
+
+        // 5. 결과를 화면에 표시 (가시성을 위해 추가)
+        const tableData = result.map(person => {
+            return {
+                name: person.name,
+                items: person.items
+            };
+        });
+        const resultDisplay = document.getElementById("result-display");
+       
+
+        /*
+         * --- 예상 출력 결과 (콘솔) ---
+         *
+         * [
+         *   { name: "김씨", items: ["라면", "통조림", "계란"] },
+         *   { name: "이씨", items: ["햇반", "생수", "사과"] },
+         *   { name: "박씨", items: ["김치", "빵", "우유"] }
+         * ]
+         *
+        */
+    </script>
+</body>
+</html>

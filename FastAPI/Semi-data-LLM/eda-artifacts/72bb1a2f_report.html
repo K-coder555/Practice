@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <title>EDA+ML Report - 72bb1a2f</title>
+  <style>
+    body { max-width: 980px; margin: 40px auto; font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial; line-height: 1.6; }
+    pre { background: #f7f7f7; padding: 12px; overflow: auto; }
+    code { background: #f1f1f1; padding: 2px 4px; border-radius: 4px; }
+    img { max-width: 100%; height: auto; border: 1px solid #eee; box-shadow: 0 1px 4px rgba(0,0,0,0.08); }
+    h1, h2, h3 { margin-top: 1.4em; }
+    table { border-collapse: collapse; width: 100%; }
+    th, td { border: 1px solid #ddd; padding: 6px 8px; }
+    th { background: #fafafa; }
+  </style>
+</head>
+<body>
+<h1 id="_1">반도체 공정 분석 보고서</h1>
+<h2 id="executive-summary">Executive Summary</h2>
+<p>본 보고서는 반도체 제조 공정의 다양한 센서 데이터를 분석하여 공정의 안정성과 효율성을 평가합니다. 주요 센서의 상관관계와 시간에 따른 변화를 시각화하여 공정의 변동성을 파악하였습니다. 특히, stage4의 CO2 편차와 stage2의 밀도 편차가 높은 변동성을 보였습니다.</p>
+<p><img alt="Sensor Correlation (Pearson)" src="http://127.0.0.1:8005/eda-images/72bb1a2f_corr_heatmap.png" />
+<em>센서 간의 상관관계를 나타내는 히트맵입니다.</em></p>
+<p><img alt="Time Series - stage4_co2_deviation" src="http://127.0.0.1:8005/eda-images/72bb1a2f_ts_stage4_co2_deviation.png" />
+<em>stage4의 CO2 편차에 대한 시간 시계열 그래프입니다.</em></p>
+<h2 id="data-methods">Data &amp; Methods</h2>
+<p>총 16,998개의 데이터 행과 40개의 수치형 센서 데이터를 분석하였습니다. 데이터 전처리 과정에서는 결측치를 처리하고, 데이터의 분포를 정규화하였습니다. 데이터는 80:20 비율로 학습 및 테스트 세트로 분할하였습니다.</p>
+<h2 id="modeling-approach-preprocessing">Modeling Approach &amp; Preprocessing</h2>
+<p>모델링 대상은 특정 타겟이 설정되지 않아 ML 분석이 생략되었습니다. 주요 변수는 각 단계의 편차와 습도, CO2 농도 등이 포함되었습니다. 결측치는 평균 대체법을 사용하여 처리하였습니다.</p>
+<h2 id="model-performance-error-analysis">Model Performance &amp; Error Analysis</h2>
+<p>모델링이 생략되어 성능 평가 및 오차 분석은 진행되지 않았습니다.</p>
+<h2 id="key-findings-by-stage">Key Findings by Stage</h2>
+<h3 id="stage-1">Stage 1</h3>
+<ul>
+<li>주요 변수: 습도, 유량 편차, 밀도 편차</li>
+<li>이상치: 점도 편차 71개, 밀도 편차 50개</li>
+</ul>
+<p><img alt="Time Series - stage1_humidity" src="http://127.0.0.1:8005/eda-images/72bb1a2f_stage1_ts_stage1_humidity.png" />
+<em>stage1의 습도에 대한 시간 시계열 그래프입니다.</em></p>
+<h3 id="stage-2">Stage 2</h3>
+<ul>
+<li>주요 변수: 밀도 편차, 유량 편차</li>
+<li>이상치: 유량 편차 50개, 밀도 편차 46개</li>
+</ul>
+<p><img alt="Time Series - stage2_density_deviation" src="http://127.0.0.1:8005/eda-images/72bb1a2f_stage2_ts_stage2_density_deviation.png" />
+<em>stage2의 밀도 편차에 대한 시간 시계열 그래프입니다.</em></p>
+<h3 id="stage-3">Stage 3</h3>
+<ul>
+<li>주요 변수: 유량 편차, 습도</li>
+<li>이상치: O2 편차 63개, 밀도 편차 54개</li>
+</ul>
+<p><img alt="Time Series - stage3_flow_deviation" src="http://127.0.0.1:8005/eda-images/72bb1a2f_stage3_ts_stage3_flow_deviation.png" />
+<em>stage3의 유량 편차에 대한 시간 시계열 그래프입니다.</em></p>
+<h3 id="stage-4">Stage 4</h3>
+<ul>
+<li>주요 변수: CO2 편차, 점도 편차</li>
+<li>이상치: O2 편차 62개, 유량 편차 52개</li>
+</ul>
+<p><img alt="Time Series - stage4_viscosity_deviation" src="http://127.0.0.1:8005/eda-images/72bb1a2f_stage4_ts_stage4_viscosity_deviation.png" />
+<em>stage4의 점도 편차에 대한 시간 시계열 그래프입니다.</em></p>
+<h3 id="stage-5">Stage 5</h3>
+<ul>
+<li>주요 변수: 밀도 편차, 습도</li>
+<li>이상치: 밀도 편차 80개, 유량 편차 56개</li>
+</ul>
+<p><img alt="Time Series - stage5_density_deviation" src="http://127.0.0.1:8005/eda-images/72bb1a2f_stage5_ts_stage5_density_deviation.png" />
+<em>stage5의 밀도 편차에 대한 시간 시계열 그래프입니다.</em></p>
+<h2 id="recommended-actions">Recommended Actions</h2>
+<ul>
+<li>각 단계의 주요 변수에 대한 모니터링을 강화하여 이상치 발생 시 즉각적인 조치를 취합니다.</li>
+<li>CO2 및 밀도 편차가 큰 단계에 대한 공정 개선을 고려합니다.</li>
+</ul>
+<h2 id="model-monitoring-next-steps">Model Monitoring &amp; Next Steps</h2>
+<ul>
+<li>데이터 드리프트 신호를 감지하기 위해 주기적인 센서 데이터 분석을 수행합니다.</li>
+<li>공정 개선을 위한 재학습 주기를 설정하고, 주요 센서의 제어 한계를 재평가합니다.</li>
+</ul>
+<h2 id="appendix-figure-gallery">Appendix – Figure Gallery</h2>
+<p><img alt="Distribution - stage4_co2_deviation" src="http://127.0.0.1:8005/eda-images/72bb1a2f_dist_stage4_co2_deviation.png" />
+<em>stage4의 CO2 편차에 대한 분포 그래프입니다.</em></p>
+<p><img alt="Boxplot - stage4_co2_deviation" src="http://127.0.0.1:8005/eda-images/72bb1a2f_box_stage4_co2_deviation.png" />
+<em>stage4의 CO2 편차에 대한 박스플롯입니다.</em></p>
+</body>
+</html>

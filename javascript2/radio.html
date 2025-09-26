@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Radio Button 예제</title>
+</head>
+<body>
+
+    <h2>홍길동 변신술</h2>
+    <p>변신할 대상을 선택하세요.</p>
+    <form id="fruitForm">
+        <label>
+            <input type="radio" id="apple" name="fruit" value="사과">스님
+        </label>
+
+        <label>
+            <input type="radio" id="banana" name="fruit" value="바나나">곰
+        </label>
+
+        <label>
+            <input type="radio" id="orange" name="fruit" value="오렌지">호랑이
+        </label>
+        
+    </form>
+
+    <button id="myButton3">변신</button>
+
+    <p>변신 결과: </p>
+    <div id="transformationResult", style="width: auto;"></div>
+
+    <script>
+        const myButton3 = document.getElementById('myButton3');
+        myButton3.addEventListener('click', () => {
+            
+            const outputDiv = document.getElementById('transformationResult');
+            const inputDiv = document.getElementById('transformationResult');
+            const selectedFruit = document.querySelector('input[type="radio"]:checked');
+            console.log(selectedFruit);
+            if (selectedFruit) {
+                outputDiv.innerHTML = `<strong>${selectedFruit.value}로 변신 완료!</strong>`;
+                inputDiv.innerHTML = `<strong>${selectedFruit.value}로 변신 완료!</strong>`;
+            } else {
+                outputDiv.innerHTML = "<strong>변신할 대상을 선택해주세요!</strong>";
+                inputDiv.innerHTML = "<strong>변신할 대상을 선택해주세요!</strong>";
+                return;
+            }
+           
+        });
+    </script>
+
+</body>
+</html>

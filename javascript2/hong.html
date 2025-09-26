@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 객체 예제
+        person = {
+            name: "홍길동",
+            age: 25,
+            job: "의적",
+            skills: ["검술", "전략", "분신"],
+            shadow: {
+                color: "black",
+            },
+            
+        };
+        const child = Object.create(person); // person을 prototype으로 하는 child 객체 생성
+
+        const temp = JSON.stringify(person); // person 객체를 복사하여 fakeHong 객체 생성
+        const fakeHong = JSON.parse(temp); // JSON 문자열을 다시 객체로 변환 => 깊은 복사, 독립된 객체 생성
+        const idx = fakeHong.skills.indexOf("분신");
+        if (idx !== -1) {
+            fakeHong.skills.splice(idx, 1); // "분신" 기술 제거
+        }
+
+        //fakeHong.skills = fakeHong.skills.filter(skill => skill !== "분신"); // 분신 기술 제거
+        console.log(fakeHong.skills);
+
+        
+        delete fakeHong.shadow.color; // shadow 속성 삭제
+        document.write(JSON.stringify(fakeHong)); // fakeHong 객체를 JSON 문자열로 변환하여 출력
+        document.write(JSON.stringify(person)); // person 객체를 JSON 문자열로 변환하여 출력
+    </script>
+</body>
+</html>

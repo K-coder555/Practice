@@ -1,0 +1,10 @@
+{
+  "status": "unsupervised",
+  "algo": "IsolationForest",
+  "n_features": 41,
+  "figs": [
+    "ml_iforest_score_hist",
+    "ml_iforest_threshold_sweep"
+  ],
+  "note": "No valid target; produced anomaly-score diagnostics."
+}

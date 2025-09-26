@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bootstrap Grid and Colors</title>
+    <!-- npm으로 설치한 Bootstrap CSS 파일 연결 -->
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <style>
+        /* 더 나은 시각적 구분을 위한 약간의 추가 스타일 */
+        .row {
+            margin-top: 1rem;
+        }
+        .row .col {
+            padding: 2rem;
+            color: white;
+            text-align: center;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1 class="mt-4 mb-4 text-center">Bootstrap Grid & Color Example</h1>
+
+        <!-- 상단 행: 3개의 열, primary 색상 -->
+        <div class="row">
+            <div class="col bg-primary">
+                첫 번째 열 (Primary)
+            </div>
+            <div class="col bg-primary">
+                두 번째 열 (Primary)
+            </div>
+            <div class="col bf-">
+                세 번째 열 (Primary)
+            </div>
+        </div>
+
+        <!-- 하단 행: 1개의 열, secondary 색상 -->
+        <div class="row">
+            <div class="col bg-secondary">
+                하단 행 (Secondary)
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>

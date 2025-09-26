@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bootstrap Interactive Search List</title>
+    <!-- npm으로 설치한 Bootstrap CSS 파일 연결 -->
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <!-- Bootstrap Icons CDN 추가 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <style>
+        html {
+            scroll-behavior: smooth; /* 부드러운 스크롤 효과를 위한 전역 설정 */
+        }
+        body {
+            background-color: #f8f9fa;
+        }
+        .container {
+            max-width: 960px;
+        }
+        .search-area {
+            background-color: #fff;
+            padding: 2rem;
+            border-radius: 0.5rem;
+            box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+        }
+        /* 검색된 항목을 강조하기 위한 하이라이트 스타일 */
+        .highlight {
+            background-color: #d1e7fd !important; /* Bootstrap의 primary 색상 연한 버전 */
+            border-left: 5px solid #0d6efd !important;
+            transition: background-color 0.3s ease-in-out;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container mt-5">
+
+        <!-- 페이지 타이틀 -->
+        <div class="row mb-4">
+            <div class="col">
+                <h1 class="text-center">게시판 목록 (검색 기능)</h1>
+            </div>
+        </div>
+
+        <!-- 키워드 검색 영역 -->
+        <div class="row mb-4">
+            <div class="col">
+                <div class="search-area">
+                    <div class="d-flex gap-2">
+                        <input type="text" id="searchInput" class="form-control form-control-lg flex-grow-1" placeholder="'공지', '세 번째' 등으로 검색해보세요...">
+                        <button id="searchButton" class="btn btn-primary btn-lg d-flex align-items-center">
+                            <i class="bi bi-search me-2"></i> 검색
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 목록형 데이터 영역 -->
+        <div class="row">
+            <div class="col">
+                <div id="postList" class="list-group shadow-sm">
+                    <a href="#" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+                        <div>
+                            <h5 class="mb-1">첫 번째 게시물 제목입니다.</h5>
+                            <p class="mb-1 text-muted">작성자: 김부트 | 2023-10-27</p>
+                        </div>
+                        <span class="badge bg-primary rounded-pill">14</span>
+                    </a>
+                    <a href="#" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+                        <div>
+                            <h5 class="mb-1">두 번째 게시물은 공지사항입니다.</h5>
+                            <p class="mb-1 text-muted">작성자: 관리자 | 2023-10-26</p>
+                        </div>
+                        <span class="badge bg-danger rounded-pill">중요</span>
+                    </a>
+                    <a href="#" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+                        <div>
+                            <h5 class="mb-1">세 번째 게시물입니다.</h5>
+                            <p class="mb-1 text-muted">작성자: 이스트랩 | 2023-10-25</p>
+                        </div>
+                        <span class="badge bg-primary rounded-pill">5</span>
+                    </a>
+                    <a href="#" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+                        <div>
+                            <h5 class="mb-1">네 번째 게시물입니다.</h5>
+                            <p class="mb-1 text-muted">작성자: 박플렉스 | 2023-10-24</p>
+                        </div>
+                        <span class="badge bg-primary rounded-pill">8</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const searchButton = document.getElementById('searchButton');
+            const searchInput = document.getElementById('searchInput');
+            const postList = document.getElementById('postList');
+            const posts = postList.getElementsByTagName('a');
+
+            const searchHandler = () => {
+                const searchTerm = searchInput.value.toLowerCase().trim();
+                let found = false;
+
+                // 기존 하이라이트 제거
+                for (const post of posts) {
+                    post.classList.remove('highlight');
+                }
+
+                if (searchTerm === '') {
+                    return; // 검색어가 없으면 아무것도 안함
+                }
+
+                // 게시물 목록 순회
+                for (const post of posts) {
+                    const title = post.querySelector('h5').innerText.toLowerCase();
+                    
+                    if (title.includes(searchTerm)) {
+                        found = true;
+
+                        // 해당 게시물로 스크롤
+                        post.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+                        // 하이라이트 효과 추가
+                        post.classList.add('highlight');
+
+                        // 잠시 후 하이라이트 제거
+                        setTimeout(() => {
+                            post.classList.remove('highlight');
+                        }, 2500);
+
+                        break; // 첫 번째 일치하는 항목을 찾으면 중단
+                    }
+                }
+
+                if (!found) {
+                    alert('해당 키워드를 포함하는 게시물을 찾을 수 없습니다.');
+                }
+            };
+
+            // 검색 버튼 클릭 시 실행
+            searchButton.addEventListener('click', searchHandler);
+
+            // 엔터 키 입력 시 실행
+            searchInput.addEventListener('keyup', (event) => {
+                if (event.key === 'Enter') {
+                    searchHandler();
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>

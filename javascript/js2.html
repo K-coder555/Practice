@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prompt와 Alert 예제</title>
+</head>
+<body>
+    <h1>Prompt와 Alert를 이용한 문장 입출력</h1>
+    <p>페이지가 로드되면 문장을 입력하는 창이 나타납니다.</p>
+
+    <script>
+        // 1. prompt 함수를 사용하여 사용자에게 문장 입력을 요청합니다.
+        // 사용자가 입력한 내용은 'userInput' 변수에 저장됩니다.
+        const userInput = prompt("길동이는 변신을 하고싶어");
+        function transform(name) {
+            if (name !== null && name !== "") {
+            // 3. alert 함수를 사용하여 입력받은 문장을 출력합니다.
+            alert("홍길동 변신 - " + name + " - 변신 완료!");
+        } else {
+            // 4. 사용자가 입력을 취소했거나 아무것도 입력하지 않은 경우
+            alert("연기처럼 사라졌습니다.");
+        }
+        }
+        // 2. 사용자가 무언가를 입력했는지 확인합니다.
+        // (취소 버튼을 누르거나 아무것도 입력하지 않으면 null 또는 빈 문자열이 될 수 있습니다.)
+        transform(userInput);
+    </script>
+</body>
+</html>

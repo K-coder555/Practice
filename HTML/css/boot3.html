@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bootstrap Grid & Flexbox UI Example</title>
+    <!-- npm으로 설치한 Bootstrap CSS 파일 연결 -->
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <!-- Bootstrap Icons CDN 추가 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .container {
+            max-width: 960px;
+        }
+        .search-area {
+            background-color: #fff;
+            padding: 2rem;
+            border-radius: 0.5rem;
+            box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container mt-5">
+
+        <!-- 페이지 타이틀 -->
+        <div class="row mb-4">
+            <div class="col">
+                <h1 class="text-center">게시판 목록</h1>
+            </div>
+        </div>
+
+        <!-- 키워드 검색 영역 (Grid + Flexbox) -->
+        <div class="row mb-4">
+            <div class="col">
+                <div class="search-area">
+                    <!-- d-flex를 사용하여 Flexbox 레이아웃 적용 -->
+                    <div class="d-flex gap-2">
+                        <!-- 검색어 입력창이 남는 공간을 모두 차지하도록 flex-grow-1 적용 -->
+                        <input type="text" class="form-control form-control-lg flex-grow-1" placeholder="검색할 키워드를 입력하세요...">
+                        <!-- 검색 버튼 -->
+                        <button class="btn btn-primary btn-lg d-flex align-items-center">
+                            <i class="bi bi-search me-2"></i> 검색
+                        </button>
+                    </div>
+                </div>
+                <hr>
+            </div>
+            <div class="col">
+                <div class="list-group shadow-sm">
+                    <!-- List Group Item 1 (Flexbox 활용) -->
+                    <a href="#" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+                        <div>
+                            <h5 class="mb-1">첫 번째 게시물 제목입니다.</h5>
+                            <p class="mb-1 text-muted">작성자: 김부트 | 2023-10-27</p>
+                        </div>
+                        <span class="badge bg-primary rounded-pill">14</span>
+                    </a>
+                    <!-- List Group Item 2 (Flexbox 활용) -->
+                    <a href="#" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+                        <div>
+                            <h5 class="mb-1">두 번째 게시물은 공지사항입니다.</h5>
+                            <p class="mb-1 text-muted">작성자: 관리자 | 2023-10-26</p>
+                        </div>
+                        <span class="badge bg-danger rounded-pill">중요</span>
+                    </a>
+                    <!-- List Group Item 3 (Flexbox 활용) -->
+                    <a href="#" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+                        <div>
+                            <h5 class="mb-1">세 번째 게시물입니다.</h5>
+                            <p class="mb-1 text-muted">작성자: 이스트랩 | 2023-10-25</p>
+                        </div>
+                        <span class="badge bg-primary rounded-pill">5</span>
+                    </a>
+                    <!-- List Group Item 4 (Flexbox 활용) -->
+                    <a href="#" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+                        <div>
+                            <h5 class="mb-1">네 번째 게시물입니다.</h5>
+                            <p class="mb-1 text-muted">작성자: 박플렉스 | 2023-10-24</p>
+                        </div>
+                        <span class="badge bg-primary rounded-pill">8</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- 목록형 데이터 영역 -->
+        <div class="row">
+            
+        </div>
+
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,9 @@
+# pjt-requirements.txt
+# pip install -r pjt-requirements.txt
+
+langchain-core # 핵심 추상화와 인터페이스만 제공하는 경량 기반 패키지
+langchain-community # 커뮤니티에서 유지하는 연결 도구 모음, 많은 외부 서비스 및 DB와의 통합 기능
+langchain-openai # OpenAI와의 연동 기능만 별도로 분리한 모듈
+faiss-cpu # FAISS 벡터 DB (CPU 버전)
+pypdf # PDF에서 페이지 단위로 텍스트를 추출하고 이를 하나의 문자열로 합치는 역할
+python-multipart # 파일 업로드 처리 패키지

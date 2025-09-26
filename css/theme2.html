@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS-only 테마 전환</title>
+    <style>
+        /* 1. CSS 변수로 테마별 색상 팔레트 정의 */
+        :root {
+            --bg-color: #f8f9fa;
+            --text-color: #212529;
+            --heading-color: #000;
+            --card-bg-color: #fff;
+            --border-color: #e9ecef;
+            --primary-color: #6758f3;
+            --switch-bg: #ced4da;
+            --switch-fg: #fff;
+            --shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        /* 2. 체크박스가 체크되었을 때(:checked) 적용될 다크 모드 색상 */
+        #theme-toggle:checked + .page-wrapper {
+            --bg-color: #121212;
+            --text-color: #e0e0e0;
+            --heading-color: #fff;
+            --card-bg-color: #1e1e1e;
+            --border-color: #333;
+            --primary-color: #8a7ff5;
+            --switch-bg: var(--primary-color);
+        }
+
+        /* 3. 기본 스타일 및 전환 효과 */
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            margin: 0;
+        }
+
+        .page-wrapper {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            min-height: 100vh;
+            padding: 20px;
+            transition: background-color 0.4s, color 0.4s;
+        }
+
+        .container {
+            max-width: 700px;
+            margin: 40px auto;
+            background-color: var(--card-bg-color);
+            padding: 30px 40px;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border-color);
+            transition: background-color 0.4s, border-color 0.4s;
+        }
+
+        h1 {
+            color: var(--heading-color);
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        p { line-height: 1.8; }
+        a { color: var(--primary-color); font-weight: 500; }
+
+        /* 4. 실제 기능의 핵심: 보이지 않는 체크박스와 토글 스위치 디자인 */
+        .theme-switch-wrapper {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            align-items: center;
+        }
+
+        #theme-toggle {
+            display: none; /* 체크박스는 숨김 */
+        }
+
+        .theme-toggle-label {
+            cursor: pointer;
+            background-color: var(--switch-bg);
+            width: 50px;
+            height: 26px;
+            border-radius: 50px;
+            position: relative;
+            transition: background-color 0.4s;
+        }
+
+        .theme-toggle-label::after {
+            content: '';
+            position: absolute;
+            background-color: var(--switch-fg);
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            top: 3px;
+            left: 4px;
+            transition: transform 0.4s, background-color 0.4s;
+        }
+
+        #theme-toggle:checked + .page-wrapper .theme-toggle-label::after {
+            transform: translateX(23px);
+        }
+
+        .info {
+            background-color: rgba(0,0,0,0.03);
+            border-left: 4px solid var(--primary-color);
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 30px;
+        }
+        .info code { font-weight: bold; }
+
+    </style>
+</head>
+<body>
+
+    <button type="button" class="btn btn-primary">Primary</button>
+<button type="button" class="btn btn-secondary">Secondary</button>
+<button type="button" class="btn btn-success">Success</button>
+<button type="button" class="btn btn-danger">Danger</button>
+<button type="button" class="btn btn-warning">Warning</button>
+<button type="button" class="btn btn-info">Info</button>
+<button type="button" class="btn btn-light">Light</button>
+<button type="button" class="btn btn-dark">Dark</button>
+
+<button type="button" class="btn btn-link">Link</button>
+
+</body>
+</html>

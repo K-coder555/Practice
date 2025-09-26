@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Position 속성 예제</title>
+    <style>
+        /* 기본 스타일 */
+        body {
+            font-family: 'Malgun Gothic', sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding-top: 20px;
+            padding-bottom: 20px;
+        }
+        h1, h2 {
+            text-align: center;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+            margin-bottom: 30px;
+        }
+        .container {
+            width: 80%;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+        }
+        .info {
+            background-color: #f4f4f4;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+
+        /* 각 포지션 예제를 감싸는 컨테이너 */
+        .position-example {
+            border: 2px dashed #aaa;
+            padding: 20px;
+            margin-bottom: 40px;
+            background-color: #f9f9f9;
+        }
+        
+        /* 모든 박스의 공통 스타일 */
+        .box {
+            width: 150px;
+            height: 150px;
+            color: white;
+            font-weight: bold;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 5px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        /* --- Position 속성별 스타일 --- */
+
+        /* 1. position: static (기본값) */
+        .static-box {
+            position: static;
+            background-color: #5DADE2;
+            /* top, right, bottom, left 속성이 적용되지 않음 */
+            top: 50px; 
+            left: 50px;
+        }
+
+        /* 2. position: relative */
+        .relative-container {
+            height: 180px; /* 원래 요소가 차지하던 공간을 보여주기 위함 */
+        }
+        .relative-box {
+            position: relative;
+            background-color: #58D68D;
+            /* 원래 위치(static일 때의 위치)를 기준으로 이동 */
+            top: 20px;
+            left: 30px;
+        }
+
+        /* 3. position: absolute */
+        .absolute-container {
+            position: relative; /* absolute의 기준점이 될 부모 요소 */
+            height: 250px;
+            background-color: #f0e68c;
+            border: 1px solid #ccc;
+        }
+        .absolute-box {
+            position: absolute;
+            background-color: #EC7063;
+            /* 가장 가까운 position: relative/absolute/fixed 부모를 기준으로 배치 */
+            top: 40px;
+            right: 20px;
+        }
+
+        /* 4. position: fixed */
+        .fixed-box {
+            position: fixed;
+            background-color: #AF7AC5;
+            /* 뷰포트(브라우저 창)를 기준으로 배치됨 */
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000; /* 다른 요소들 위에 보이도록 설정 */
+        }
+
+        /* 5. position: sticky */
+        .sticky-container {
+            height: 300px; 
+            overflow: auto; /* 필요 시 내부 스크롤 */
+        }
+        .sticky-box {
+            position: sticky;
+            background-color: #F5B041;
+            /* 스크롤 위치가 지정된 값에 도달하면 화면에 고정 */
+            top: 0;
+        }
+
+        /* 스크롤을 위한 더미 콘텐츠 */
+        .scroll-content {
+            height: 1200px;
+            background-image: linear-gradient(to bottom, #f0f9ff, #cce7ff);
+            padding: 20px;
+            margin-top: 30px;
+            border-radius: 8px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>CSS Position 속성 예제</h1>
+
+    <div class="container">
+
+        <!-- 1. Static -->
+        <div class="position-example">
+            <h2>position: static (기본값)</h2>
+            <div class="info">
+                <code>static</code>은 모든 요소의 기본값입니다. HTML 문서의 일반적인 흐름에 따라 배치되며, <code>top, right, bottom, left</code> 속성이 아무런 영향을 주지 않습니다.
+            </div>
+            <div class="box static-box">Static</div>
+        </div>
+
+        <!-- 2. Relative -->
+        <div class="position-example">
+            <h2>position: relative</h2>
+            <div class="info">
+                <code>relative</code>는 요소의 원래 위치(static일 때의 위치)를 기준으로 <code>top, left</code> 등으로 이동시킵니다. 이동하더라도 원래 있던 공간은 그대로 차지합니다.
+            </div>
+            <div class="relative-container">
+                <div class="box relative-box">Relative</div>
+            </div>
+        </div>
+
+        <!-- 3. Absolute -->
+        <div class="position-example">
+            <h2>position: absolute</h2>
+            <div class="info">
+                <code>absolute</code>는 가장 가까운 위치 지정 조상(즉, <code>position</code>이 <code>static</code>이 아닌 부모 요소)에 대해 상대적으로 배치됩니다. 만약 그런 조상이 없다면 초기 컨테이닝 블록(보통 <code>&lt;body&gt;</code>)을 기준으로 합니다. 문서 흐름에서 완전히 제거되므로 원래 차지하던 공간이 사라집니다.
+            </div>
+            <div class="absolute-container">
+                <p style="text-align:center; padding-top:10px;">(이 회색 영역이 position: relative인 부모입니다)</p>
+                <div class="box absolute-box">Absolute</div>
+            </div>
+        </div>
+
+        <!-- 4. Fixed -->
+        <div class="position-example">
+            <h2>position: fixed</h2>
+            <div class="info">
+                <code>fixed</code>는 뷰포트(브라우저 창)를 기준으로 위치가 고정됩니다. 페이지를 스크롤해도 항상 같은 위치에 표시됩니다. 문서 흐름에서 제거됩니다. (우측 하단 확인)
+            </div>
+            <div class="box fixed-box">Fixed</div>
+        </div>
+
+        <!-- 5. Sticky -->
+        <div class="position-example">
+            <h2>position: sticky</h2>
+            <div class="info">
+                <code>sticky</code>는 <code>relative</code>와 <code>fixed</code>의 특징을 모두 가집니다. 평소에는 일반적인 흐름(static)에 따라 배치되지만, 스크롤 위치가 설정된 임계점(예: <code>top: 0</code>)에 도달하면 그 위치에 고정(fixed처럼 동작)됩니다.
+            </div>
+            <div class="sticky-container">
+                 <div class="box sticky-box">Sticky</div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="scroll-content">
+        <h2>스크롤 테스트 영역</h2>
+        <p>페이지를 아래로 스크롤하여 'fixed'와 'sticky' 요소의 동작을 확인하세요.</p>
+        <p>Fixed Box는 화면 우측 하단에 계속 고정되어 있습니다.</p>
+        <p>Sticky Box는 스크롤하여 상단에 닿으면 그 자리에 붙어있게 됩니다.</p>
+        <br><br>...<br><br>...<br><br>...<br><br>...<br><br>...<br><br>...<br><br>...<br><br>...<br><br>
+        <p>스크롤 끝</p>
+    </div>
+
+</body>
+</html>
