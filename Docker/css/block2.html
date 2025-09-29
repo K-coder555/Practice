@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flexbox와 Grid 레이아웃 예제</title>
+    <style>
+        :root {
+            --bg-color: #f4f7f6;
+            --container-bg: #ffffff;
+            --border-color: #dce1e6;
+            --shadow: 0 4px 10px rgba(0,0,0,0.08);
+            --info-bg: #eef2f7;
+            --flex-color: #3498db;
+            --grid-color: #9b59b6;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            background-color: var(--bg-color);
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background-color: var(--container-bg);
+            padding: 20px 30px;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+        }
+
+        h1, h2 {
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 10px;
+            color: #2c3e50;
+        }
+        h1 { text-align: center; }
+
+        .info {
+            background-color: var(--info-bg);
+            padding: 15px;
+            border-radius: 5px;
+            margin: 20px 0;
+            border-left: 4px solid #5a67d8;
+        }
+        .info code {
+            background-color: rgba(0,0,0,0.07);
+            padding: 3px 6px;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+
+        .example-box {
+            border: 2px dashed var(--border-color);
+            padding: 20px;
+            margin-top: 10px;
+            border-radius: 8px;
+            background-color: #f8f9fa;
+        }
+
+        /* 공통 아이템 스타일 */
+        .item {
+            color: white;
+            font-weight: bold;
+            text-align: center;
+            border-radius: 5px;
+            padding: 20px;
+            min-height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* 1. Flexbox 예제 */
+        .flex-container {
+            display: flex;
+            background-color: #ecf0f1;
+            padding: 10px;
+            border-radius: 5px;
+            /* Flexbox 속성 */
+            justify-content: space-around; /* 주 축(가로) 정렬 */
+            align-items: center;      /* 교차 축(세로) 정렬 */
+            flex-wrap: wrap;              /* 아이템이 넘칠 경우 줄바꿈 */
+            gap: 10px;                    /* 아이템 간의 간격 */
+        }
+        .flex-item {
+            background-color: var(--flex-color);
+            width: 150px; /* Flexbox에서는 너비가 유연하게 조절될 수 있음 */
+        }
+
+        /* 2. Grid 예제 */
+        .grid-container {
+            display: grid;
+            background-color: #ecf0f1;
+            padding: 10px;
+            border-radius: 5px;
+            /* Grid 속성 */
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* 반응형 컬럼 */
+            gap: 15px; /* 아이템 간의 간격 */
+        }
+        .grid-item {
+            background-color: var(--grid-color);
+        }
+        .grid-item.special {
+            background-color: #e67e22;
+            grid-column: span 2; /* 2개의 컬럼을 차지 */
+            grid-row: span 2;    /* 2개의 로우를 차지 */
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Flexbox와 Grid 레이아웃</h1>
+
+        <!-- 1. Flexbox 레벨 요소 -->
+        <section>
+            <h2>1. <code>display: flex</code> (1차원 레이아웃)</h2>
+            <div class="info">
+                <strong>핵심 개념:</strong> 아이템을 <strong>하나의 축(가로 또는 세로)</strong>을 따라 정렬하고 분배하는 1차원 레이아웃 시스템입니다.<br>
+                <strong>주요 사용처:</strong> 컴포넌트 내부의 아이템 정렬, 내비게이션 바, 버튼 그룹 등 한 방향으로 요소를 배치할 때 유용합니다.
+            </div>
+            <div class="example-box">
+                <div class="flex-container">
+                    <div class="item flex-item">Flex Item 1</div>
+                    <div class="item flex-item">Flex Item 2</div>
+                    <div class="item flex-item">Flex Item 3</div>
+                    <div class="item flex-item">Flex Item 4</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. Grid 레벨 요소 -->
+        <section>
+            <h2>2. <code>display: grid</code> (2차원 레이아웃)</h2>
+            <div class="info">
+                <strong>핵심 개념:</strong> 아이템을 <strong>행(row)과 열(column)</strong>으로 구성된 격자에 배치하는 2차원 레이아웃 시스템입니다.<br>
+                <strong>주요 사용처:</strong> 전체 페이지 레이아웃, 카드 목록, 갤러리 등 복잡한 구조를 정밀하게 제어해야 할 때 강력합니다.
+            </div>
+            <div class="example-box">
+                <div class="grid-container">
+                    <div class="item grid-item">Grid Item 1</div>
+                    <div class="item grid-item special">Special Item (2x2)</div>
+                    <div class="item grid-item">Grid Item 3</div>
+                    <div class="item grid-item">Grid Item 4</div>
+                    <div class="item grid-item">Grid Item 5</div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+</body>
+</html>

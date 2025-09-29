@@ -1,0 +1,79 @@
+# OS junk
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+.conda/
+.conda_env/
+.python-version
+
+# Packaging/build
+build/
+dist/
+*.egg-info/
+.eggs/
+
+# Logs and temp files
+*.log
+logs/
+*.pid
+*.tmp
+*.temp
+tmp/
+
+# Testing/coverage
+.pytest_cache/
+.coverage
+coverage.xml
+htmlcov/
+
+# Type checkers / linters
+.mypy_cache/
+.pytype/
+.pyright/
+.ruff_cache/
+.tox/
+
+# Jupyter
+.ipynb_checkpoints/
+.jupyter/
+
+# IDE/project files
+.vscode/
+.idea/
+*.code-workspace
+
+# Environment and secrets
+.env
+.env.*
+!.env.example
+
+# Databases
+*.db
+*.db-*
+*.sqlite
+*.sqlite3
+
+# Docker / container data
+Docker/Container/data/
+FastAPI/mariadb_tmplt/data/
+
+# Project-specific binaries already observed
+FastAPI/skala-fastapi-rpt/api/test.db
+FastAPI/Semi-data-LLM/test.db
+
+# macOS extras
+Icon?
+.Spotlight-V100
+.Trashes
+

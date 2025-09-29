@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flexbox 중앙 정렬 예제</title>
+    <style>
+        html, body {
+            height: 100%; /* body와 html에 높이 100%를 주어 전체 뷰포트를 채웁니다. */
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .main-container {
+            /* 1. Flexbox 컨테이너로 지정 */
+            display: flex;
+            justify-content: center; /* 중앙 정렬 */
+            align-items: center; /* 중앙 정렬 */
+
+            /* --- 시각적 확인을 위한 스타일 --- */
+            height: 90vh; /* 컨테이너의 높이를 뷰포트 전체로 설정하여 세로 정렬을 확인 */
+            background-color: #f0f2f5;
+            border: 2px dashed #b0b8c4;
+            padding: 20px;
+            box-sizing: border-box;
+            gap: 20px; /* 아이템 사이의 간격 */
+        }
+
+        .flex-item {
+            width: 120px;
+            height: 120px;
+            background-color: #4a90e2;
+            color: white;
+            font-size: 1.2rem;
+            font-weight: bold;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+
+            /* 박스 안의 텍스트도 중앙 정렬 */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="main-container">
+        <div class="flex-item">Box 1</div>
+        <div class="flex-item">Box 2</div>
+        <div class="flex-item">Box 3</div>
+    </div>
+
+</body>
+</html>

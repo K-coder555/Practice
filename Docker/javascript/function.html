@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head> 
+    <script> //define a script to demonstrate functions in JavaScript
+        // 함수 선언을 위에서 먼저 선언해야 동작 *Hoisting*
+        function greet(name) {
+            return `안녕하세요, ${name}님!`;
+        }
+        const message = greet("홍길동");
+
+        console.log(message); // 콘솔에 함수 호출 결과를 출력합니다.
+        document.write("<h1>함수 호출 결과</h1>");
+        document.write(`<p>${greet("홍길동")}</p>`);
+        // 함수 greet을 호출하여 결과를 출력합니다.
+
+        const greet2 = function(name) {
+            return `안녕하세요, ${name}님!`;
+        }
+        document.write("<h2>함수 호출결과</h2>");
+        document.write(`<p>${greet2("Simchung")}</p>`);
+
+        const greet3 = (name) => {
+            return `안녕하세요, ${name}님!`;
+        }
+
+        document.write("<h2>화살표 함수</h2>");
+        document.write(`<p>${greet3("이순신")}</p>`);
+
+</script>
+</body>
+</html>

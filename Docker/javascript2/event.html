@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Event Handling Example</h1>
+    <button id="myButton" onclick="showEvent('Button 1 was clicked!')">Click Me!</button>
+    <button id="myButton2">Click Me!</button>
+    <button id="myButton3">Click Me!</button>
+
+    <hr>
+    <div id="output" style="border: 1px solid black; padding: 10px;">초기메시지</div>
+    <script>
+        const myButton2 = document.getElementById('myButton2');
+        const myButton3 = document.getElementById('myButton3');
+        myButton2.ondblclick = function() {
+            const outputDiv = document.getElementById('output');
+            outputDiv.innerHTML = "<strong>Button 2 was double clicked!</strong>";
+        };
+        myButton3.addEventListener('click',() => {
+            showEvent('Button 3 was clicked!');
+            const outputDiv = document.getElementById('output');
+            outputDiv.innerHTML = "<strong>Button 3 was clicked!</strong>";
+        });
+        myButton3.addEventListener('dblclick',() => {
+            showEvent('Button 3 was double clicked!');
+            const outputDiv = document.getElementById('output');
+            outputDiv.innerHTML = "<strong>Button 3 was double clicked!</strong>";
+        });
+
+        function showEvent(message) {
+            console.log(message);
+            const outputDiv = document.getElementById('output');
+            outputDiv.innerHTML = message;
+        }
+    </script>
+    
+</body>
+</html>

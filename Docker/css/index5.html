@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>김민준 | Senior Software Engineer</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Roboto:wght@300;400;500;700&display=swap');
+
+        :root {
+            --primary-color: #3498db; /* #2c3e50; */
+            --secondary-color: #2ecc71;
+            --background-color: #f4f6f8;
+            --text-color: #34495e;
+            --heading-color: #2c3e50;
+            --card-bg-color: #ffffff;
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            --border-radius: 8px;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Noto Sans KR', 'Roboto', sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.8;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        .main-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+            z-index: 1000;
+            transition: top 0.3s;
+        }
+
+        .main-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+        }
+
+        .logo a {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--heading-color);
+            text-decoration: none;
+        }
+
+        .nav-links ul {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 30px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 500;
+            font-size: 1rem;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 180px 0 120px 0;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .hero .subtitle {
+            font-size: 1.5rem;
+            font-weight: 300;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+
+        .social-links a {
+            color: white;
+            font-size: 1.8rem;
+            margin: 0 15px;
+            transition: transform 0.3s;
+            display: inline-block;
+        }
+        .social-links a:hover { transform: scale(1.2); }
+
+        /* Section Base */
+        .section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--heading-color);
+            margin-bottom: 50px;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            width: 80px;
+            height: 4px;
+            background: var(--primary-color);
+            border-radius: 2px;
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        /* About Section */
+        #about p {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            font-size: 1.1rem;
+        }
+
+        /* Skills Section */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .skill-card {
+            background-color: var(--card-bg-color);
+            padding: 30px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+
+        .skill-card h3 {
+            color: var(--heading-color);
+            margin-bottom: 15px;
+        }
+
+        .skill-card ul { list-style: none; }
+        .skill-card li { margin-bottom: 10px; }
+
+        /* Experience Section */
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 4px;
+            background-color: var(--primary-color);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -2px;
+        }
+        .timeline-item {
+            padding: 10px 40px;
+            position: relative;
+            width: 50%;
+        }
+        .timeline-item:nth-child(odd) { left: 0; }
+        .timeline-item:nth-child(even) { left: 50%; }
+        .timeline-content {
+            padding: 20px 30px;
+            background-color: var(--card-bg-color);
+            position: relative;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+        }
+        .timeline-content h3 { color: var(--primary-color); }
+        .timeline-content .date { font-weight: 500; color: #7f8c8d; margin-bottom: 10px; display: block; }
+
+        /* Projects Section */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+        }
+        .project-card {
+            background-color: var(--card-bg-color);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            transition: transform 0.3s;
+        }
+        .project-card:hover { transform: translateY(-5px); }
+        .project-card img { width: 100%; display: block; }
+        .project-content { padding: 25px; }
+        .project-content h3 { color: var(--heading-color); }
+        .project-tags span { background-color: #e4e7ea; padding: 5px 10px; border-radius: 5px; font-size: 0.8rem; margin-right: 5px; }
+        .project-links a { text-decoration: none; color: var(--primary-color); font-weight: bold; margin-right: 15px; }
+
+        /* Contact Section */
+        #contact .container {
+            text-align: center;
+        }
+        #contact p { font-size: 1.2rem; margin-bottom: 30px; }
+        .contact-btn {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        .contact-btn:hover { background-color: #2980b9; }
+
+        /* Footer */
+        .main-footer {
+            text-align: center;
+            padding: 30px 0;
+            background-color: var(--heading-color);
+            color: #bdc3c7;
+        }
+
+    </style>
+</head>
+<body>
+
+    <header class="main-header">
+        <nav class="main-nav container">
+            <div class="logo"><a href="#">MINJUN</a></div>
+            <div class="nav-links">
+                <ul>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#skills">Skills</a></li>
+                    <li><a href="#experience">Experience</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container">
+                <h1>김민준</h1>
+                <p class="subtitle">Senior Software Engineer | 문제 해결과 지속 가능한 코드에 가치를 둡니다.</p>
+                <div class="social-links">
+                    <!-- 아이콘 대신 텍스트 사용 -->
+                    <a href="#" target="_blank" title="GitHub">GitHub</a>
+                    <a href="#" target="_blank" title="LinkedIn">LinkedIn</a>
+                    <a href="#" target="_blank" title="Blog">Blog</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="section">
+            <div class="container">
+                <h2 class="section-title">About Me</h2>
+                <p>
+                    10년차 소프트웨어 엔지니어 김민준입니다. 저는 복잡한 비즈니스 요구사항을 안정적이고 확장 가능한 소프트웨어로 구현하는 일에 열정을 느낍니다. 단순히 기능을 만드는 것을 넘어, 동료와 함께 성장하고, 코드의 품질과 유지보수성을 높여 장기적으로 가치를 더하는 개발을 추구합니다. 기술의 본질을 탐구하고 최적의 해결책을 찾는 과정에서 가장 큰 보람을 느낍니다.
+                </p>
+            </div>
+        </section>
+
+        <section id="skills" class="section" style="background-color: #ecf0f1;">
+            <div class="container">
+                <h2 class="section-title">Skills & Expertise</h2>
+                <div class="skills-grid">
+                    <div class="skill-card">
+                        <h3>Backend</h3>
+                        <ul>
+                            <li>Java & Spring Framework</li>
+                            <li>Node.js & Express / NestJS</li>
+                            <li>Python & Django / FastAPI</li>
+                            <li>MSA, RESTful API, gRPC</li>
+                        </ul>
+                    </div>
+                    <div class="skill-card">
+                        <h3>Frontend</h3>
+                        <ul>
+                            <li>JavaScript (ES6+) & TypeScript</li>
+                            <li>React & Next.js</li>
+                            <li>Vue.js & Nuxt.js</li>
+                            <li>State Management (Redux, MobX)</li>
+                        </ul>
+                    </div>
+                    <div class="skill-card">
+                        <h3>DevOps & Cloud</h3>
+                        <ul>
+                            <li>AWS (EC2, S3, RDS, Lambda)</li>
+                            <li>Docker & Kubernetes</li>
+                            <li>CI/CD (Jenkins, GitHub Actions)</li>
+                            <li>Infrastructure as Code (Terraform)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="experience" class="section">
+            <div class="container">
+                <h2 class="section-title">Professional Experience</h2>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <h3>Tech Company A</h3>
+                            <span class="date">2020 - 현재</span>
+                            <p>대규모 트래픽을 처리하는 커머스 플랫폼의 백엔드 시스템을 설계하고 개발했습니다. MSA 전환 프로젝트를 리드하며 시스템 안정성을 99.99%까지 향상시켰습니다.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <h3>Startup B</h3>
+                            <span class="date">2016 - 2020</span>
+                            <p>SaaS 솔루션의 초기 개발부터 참여하여 제품을 성공적으로 시장에 런칭했습니다. 풀스택 개발자로서 프론트엔드와 백엔드, 인프라까지 전반적인 개발을 담당했습니다.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects" class="section" style="background-color: #ecf0f1;">
+            <div class="container">
+                <h2 class="section-title">Featured Projects</h2>
+                <div class="projects-grid">
+                    <div class="project-card">
+                        <img src="https://via.placeholder.com/400x250/3498db/ffffff?text=Project+A" alt="Project A">
+                        <div class="project-content">
+                            <h3>실시간 데이터 분석 플랫폼</h3>
+                            <p>대용량 로그 데이터를 실시간으로 수집, 처리하여 비즈니스 인사이트를 제공하는 플랫폼입니다.</p>
+                            <p class="project-tags"><span>Java</span> <span>Kafka</span> <span>Elasticsearch</span> <span>React</span></p>
+                            <div class="project-links">
+                                <a href="#">Live Demo</a>
+                                <a href="#">GitHub</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-card">
+                        <img src="https://via.placeholder.com/400x250/2ecc71/ffffff?text=Project+B" alt="Project B">
+                        <div class="project-content">
+                            <h3>AI 기반 추천 시스템</h3>
+                            <p>사용자 행동 패턴을 분석하여 개인화된 상품을 추천하는 API 서버를 개발했습니다.</p>
+                            <p class="project-tags"><span>Python</span> <span>FastAPI</span> <span>Redis</span> <span>Docker</span></p>
+                            <div class="project-links">
+                                <a href="#">Live Demo</a>
+                                <a href="#">GitHub</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="section">
+            <div class="container">
+                <h2 class="section-title">Get In Touch</h2>
+                <p>새로운 기회와 협업에 대해 항상 열려있습니다. 편하게 연락주세요.</p>
+                <a href="mailto:email@example.com" class="contact-btn">Say Hello</a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="main-footer">
+        <p>&copy; 2024 Kim Minjun. All Rights Reserved.</p>
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let person = {
+            name: "홍길동",
+            age: 30,
+            job: "Developer",
+            address: "서울시 강남구"
+        };
+        for (let key in person) {
+            console.log(key); // 객체의 속성에 접근하여 출력
+        }
+
+        const nums = [1, 2, 3, 4, 5];
+        console.log(nums); // 배열의 내용을 출력
+
+        for (let i = 0; i < nums.length; i++) {
+            console.log(nums[i]); // 배열의 요소에 접근하여 출력
+        } 
+        //typeof는 배열을 판단할수 없다. instanceof를 사용해야함
+        console.log(typeof nums); // "object", 배열은 객체의 일종입니다.
+    </script>
+</body>
+</html>
